@@ -15,10 +15,12 @@ import { MatIconModule }             from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { CandidateFormComponent } from './features/candidate/components/candidate-form/candidate-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CandidateTableComponent } from './features/candidate/components/candidate-table/candidate-table.component';
 @NgModule({
     declarations: [
         AppComponent,
         CandidateFormComponent,
+        CandidateTableComponent
     ],
     imports: [
         BrowserModule,
