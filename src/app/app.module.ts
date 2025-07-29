@@ -14,6 +14,7 @@ import { MatIconModule }             from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { CandidateFormComponent } from './features/candidate/components/candidate-form/candidate-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
     declarations: [
         AppComponent,
@@ -21,6 +22,7 @@ import { CandidateFormComponent } from './features/candidate/components/candidat
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         HttpClientModule,
         ReactiveFormsModule,
         MatFormFieldModule,
