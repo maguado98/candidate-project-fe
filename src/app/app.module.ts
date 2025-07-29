@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule }             from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { CandidateFormComponent } from './features/candidate/components/candidate-form/candidate-form.component';
@@ -26,7 +28,9 @@ import { CandidateFormComponent } from './features/candidate/components/candidat
         MatButtonModule,
         MatTableModule,
         MatToolbarModule,
-        MatCardModule
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]
