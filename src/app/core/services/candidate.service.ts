@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Candidate } from '../../models/candidate';
+import { HttpClient } from '@angular/common/http';
 
 const STORAGE_KEY = 'candidates';
 
@@ -8,6 +9,8 @@ const STORAGE_KEY = 'candidates';
 export class CandidateService {
     private listSubject = new BehaviorSubject<Candidate[]>(this.load());
     readonly list$: Observable<Candidate[]> = this.listSubject.asObservable();
+
+    constructor(private http: HttpClient) {}
 
     private load(): Candidate[] {
         const candidates_data = localStorage.getItem(STORAGE_KEY);
@@ -25,5 +28,15 @@ export class CandidateService {
 
     clear() {
         this.save([]);
+    }
+
+    upload(file: File) {
+        const fd = new FormData();
+        fd.append('file', file, file.name);
+        // Debe ser exactamente así:
+        return this.http.post<Candidate[]>(
+            'http://localhost:3000/candidates/upload',
+            fd
+        );
     }
 }

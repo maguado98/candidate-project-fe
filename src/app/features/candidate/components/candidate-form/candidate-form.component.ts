@@ -14,20 +14,19 @@ export class CandidateFormComponent {
   @Output() uploaded = new EventEmitter<Candidate[]>();
 
   form = this.fb.group({
-    // Añadimos Validators.pattern para prohibir cualquier dígito
-    name:    ['', [Validators.required, Validators.pattern('^[^0-9]*$')]],
+    name: ['', [Validators.required, Validators.pattern('^[^0-9]*$')]],
     surname: ['', [Validators.required, Validators.pattern('^[^0-9]*$')]],
-    file:    [null as File | null, Validators.required],
+    file: [null as File | null, Validators.required],
   });
 
   isLoading = false;
   selectedFileName: string | null = null;
 
   constructor(
-    private fb:   FormBuilder,
+    private fb: FormBuilder,
     private http: HttpClient,
-    private cs:   CandidateService
-  ) {}
+    private cs: CandidateService
+  ) { }
 
   onFileChange(event: Event) {
     const file = (event.target as HTMLInputElement).files![0] || null;
@@ -36,6 +35,7 @@ export class CandidateFormComponent {
   }
 
   submit() {
+    console.log('submit fired', this.form.value);
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -49,6 +49,8 @@ export class CandidateFormComponent {
 
     const fd = new FormData();
     fd.append('file', file, file.name);
+    fd.append('name', this.form.get('name')!.value ?? '');
+    fd.append('surname', this.form.get('surname')!.value ?? '');
 
     this.isLoading = true;
     this.http

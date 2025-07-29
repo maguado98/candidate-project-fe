@@ -1,16 +1,16 @@
 .candidate-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: block;
 }
 
 .field-group {
   display: flex;
   gap: 16px;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .file-group {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
 
