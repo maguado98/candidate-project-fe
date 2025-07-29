@@ -1,1 +1,52 @@
-<p>candidate-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Upload Candidate</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="candidate-form">
+      <div class="field-group">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="name" placeholder="e.g. John" />
+          <mat-error *ngIf="form.get('name')?.hasError('required')">
+            First Name is required
+          </mat-error>
+          <mat-error *ngIf="form.get('name')?.hasError('pattern')">
+            First Name cannot contain numbers
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="surname" placeholder="e.g. Doe" />
+          <mat-error *ngIf="form.get('surname')?.hasError('required')">
+            Last Name is required
+          </mat-error>
+          <mat-error *ngIf="form.get('surname')?.hasError('pattern')">
+            Last Name cannot contain numbers
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field-group file-group">
+        <label for="file">Excel File (.xlsx)</label>
+        <input id="file" type="file" (change)="onFileChange($event)" />
+        <div class="file-name" *ngIf="selectedFileName">
+          <mat-icon inline>insert_drive_file</mat-icon>
+          {{ selectedFileName }}
+        </div>
+        <div class="error" *ngIf="form.get('file')?.invalid && form.get('file')?.touched">
+          Excel file is required
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isLoading">
+      <mat-spinner *ngIf="isLoading" diameter="20" strokeWidth="3"></mat-spinner>
+      <span *ngIf="!isLoading">Upload</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

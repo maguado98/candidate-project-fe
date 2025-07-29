@@ -1,0 +1,29 @@
+.candidate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.file-group {
+  flex-direction: column;
+  align-items: flex-start;
+
+  .file-name {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9em;
+  }
+
+  .error {
+    font-size: 0.8em;
+    margin-top: 4px;
+  }
+}
